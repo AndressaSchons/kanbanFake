@@ -1,7 +1,11 @@
 //quadrado com informaçoes.
 //Coisas que sao alteradas a cada card: Nome do card (Todo; InProgress; Ended; Finished) e cor
 
-import { Column } from "./Column";
+import { Column } from "../Column";
+
+export type CardItem = {
+    label: string;
+};
 
 export const Cards: React.FC<CardItem> = ({ label }) => {
     return (
