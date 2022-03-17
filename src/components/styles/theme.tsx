@@ -11,14 +11,28 @@ fontSizes.titleBigger = fontSizes[4];
 const backgroundCard = "#CCCCCC";
 const listCard = "#F3F3F3";
 const topCard = "#002073";
-const nameColor = "#002073"
-const titleColor = "#FFF"
-const normalColor = "#000"
+const nameColor = "#002073";
+const titleColor = "#FFF";
+const normalColor = "#000";
 
 const theme = {
-    fontSizes, 
+    fontSizes,
     fonts: {
         primary: "PT Serif Caption, serif",
-        secundary: 
-    }
-}
+        secondary: "Roboto, sans-serif",
+    },
+    colors: {
+        backgroundCard,
+        listCard,
+        topCard,
+        nameColor,
+        titleColor,
+        normalColor,
+    },
+};
+
+export type ThemeType = typeof theme;
+
+export const Theme: React.FC = ({ children }) => {
+    return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+};

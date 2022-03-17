@@ -1,9 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=PT+Serif+Caption&family=Raleway&family=Roboto&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=ABeeZee&family=PT+Serif+Caption&family=Raleway&family=Roboto&display=swap');
-    *{
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=ABeeZee&family=PT+Serif+Caption&family=Raleway&family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+*{
         margin: 0;
         padding: 0;
         outline: 0;
@@ -11,7 +13,8 @@ export default createGlobalStyle`
     }
 
     html, body, #root {
-        heigth: 100%;
+        heigth: 100%; 
+        margin: 0;
     }
 
     body {
