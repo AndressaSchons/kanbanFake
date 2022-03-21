@@ -25,7 +25,7 @@ const columnsFromBackend = {
         items: itemsFromBackend,
     },
     [uuid()]: {
-        name: "To do",
+        name: "To Do",
         items: [],
     },
     [uuid()]: {
@@ -104,11 +104,11 @@ export const Home = () => {
                                                         style={{
                                                             background:
                                                                 snapshot.isDraggingOver
-                                                                    ? "#F45555"
-                                                                    : "#FF3422",
-                                                            padding: 4,
+                                                                    ? "#E5E5E5"
+                                                                    : "#CCCCCC",
+                                                            padding: 5,
                                                             width: 250,
-                                                            minHeight: 500,
+                                                            minHeight: 320,
                                                         }}
                                                     >
                                                         {column.items.map(
@@ -142,11 +142,6 @@ export const Home = () => {
                                                                                         padding:
                                                                                             "4px",
                                                                                         margin: "0 0 2px 0",
-
-                                                                                        backgroundColor:
-                                                                                            snapshot.isDragging
-                                                                                                ? "#260"
-                                                                                                : "#456C86",
                                                                                         color: "white",
                                                                                         ...provided
                                                                                             .draggableProps

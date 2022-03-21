@@ -8,13 +8,20 @@ import {
     LayoutProps,
     border,
     BorderStyleProps,
+    BordersProps,
+    borders,
 } from "styled-system";
 
-type BoxProps = SpaceProps & ColorProps & LayoutProps & BorderStyleProps;
+type BoxProps = SpaceProps &
+    ColorProps &
+    LayoutProps &
+    BorderStyleProps &
+    BordersProps;
 
 export const Box = styled.div<BoxProps>`
     ${space}
     ${color}
     ${layout}
     ${border}
+    ${borders}
 `;

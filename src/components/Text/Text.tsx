@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { StyledProps } from "styled-components";
 import {
     ColorProps,
     color,
@@ -8,9 +8,18 @@ import {
     TypographyProps,
     fontSize,
     FontSizeProps,
+    flexbox,
+    FlexboxProps,
+    LayoutProps,
+    layout,
 } from "styled-system";
 
-type TextProps = TypographyProps & SpaceProps & ColorProps & FontSizeProps;
+type TextProps = TypographyProps &
+    SpaceProps &
+    ColorProps &
+    FontSizeProps &
+    FlexboxProps &
+    LayoutProps;
 
 export const Text = styled.p<TextProps>`
     color: #fff;
@@ -18,4 +27,6 @@ export const Text = styled.p<TextProps>`
     ${space}
     ${color}
     ${fontSize}
+    ${flexbox}
+    ${layout}
 `;

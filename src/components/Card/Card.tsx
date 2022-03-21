@@ -18,14 +18,20 @@ export const Cards = ({ titlee, children }: propsColumn) => {
                 backgroundColor="backgroundCard"
                 minWidth="240px"
                 minHeight="172px"
-                borderStyle="2px solid #000"
+                margin="32px"
             >
-                <Top backgroundColor="#D5FFC1" minHeight="49px">
+                <Top
+                    backgroundColor="#D5FFC1"
+                    minHeight="30px"
+                    borderBottom="2px solid #000"
+                >
                     <Text
                         color="normalColor"
                         fontSize="title"
                         fontFamily="secondary"
-                        textAlign="center"
+                        justifyContent="center"
+                        justifyItems="center"
+                        display="flex"
                     >
                         {titlee}
                     </Text>
