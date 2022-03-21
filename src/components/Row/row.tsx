@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import {
-    fontFamily,
-    FontFamilyProps,
     fontSize,
     FontSizeProps,
     layout,

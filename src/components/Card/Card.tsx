@@ -1,22 +1,24 @@
-//quadrado com informaçoes.
-//Coisas que sao alteradas a cada card: Nome do card (Todo; InProgress; Ended; Finished) e cor
-import { List } from "../List/List";
 import { Text } from "../Text";
 import { Top } from "../Top/Top";
 import { Box } from "../Box/Box";
 import { Row } from "../Row";
 import { Input } from "../Input/input";
+import { ReactNode } from "react";
+import { ListItem } from "../List/ListItem";
 
-const text = "Olá";
+type propsColumn = {
+    titlee: string;
+    children: ReactNode;
+};
 
-export const Cards = () => {
+export const Cards = ({ titlee, children }: propsColumn) => {
     return (
         <div>
             <Box
                 backgroundColor="backgroundCard"
                 minWidth="240px"
                 minHeight="172px"
-                borderStyle="2px solid black"
+                borderStyle="2px solid #000"
             >
                 <Top backgroundColor="#D5FFC1" minHeight="49px">
                     <Text
@@ -25,19 +27,10 @@ export const Cards = () => {
                         fontFamily="secondary"
                         textAlign="center"
                     >
-                        Card
+                        {titlee}
                     </Text>
                 </Top>
-                <Row width="100%">
-                    <Input
-                        flex={1}
-                        placeholder="Enter with the task here..."
-                        marginBottom="15px"
-                        marginTop="10px"
-                        textAlign="center"
-                    />
-                </Row>
-                {/* <List items={text} /> */}
+                <Row width="100%">{children}</Row>
             </Box>
         </div>
     );
