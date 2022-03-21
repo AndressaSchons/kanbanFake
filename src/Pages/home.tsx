@@ -80,14 +80,8 @@ export const Home = () => {
 
     return (
         <div>
-            {/* <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    height: "100%",
-                    width: "100%",
-                }}
-            >
+            <Row fontSize="titleBigger">Project One</Row>
+            <Row>
                 <DragDropContext
                     onDragEnd={(result) =>
                         onDragEnd(result, columns, setColumns)
@@ -96,15 +90,7 @@ export const Home = () => {
                     {Object.entries(columns).map(
                         ([columnId, column], index) => {
                             return (
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        alignItems: "center",
-                                    }}
-                                    key={columnId}
-                                >
-                                    <h2>{column.name}</h2>
+                                <Cards titlee={column.name} key={columnId}>
                                     <div style={{ margin: 8 }}>
                                         <Droppable
                                             droppableId={columnId}
@@ -185,122 +171,12 @@ export const Home = () => {
                                             }}
                                         </Droppable>
                                     </div>
-                                </div>
+                                </Cards>
                             );
                         }
                     )}
                 </DragDropContext>
-            </div> */}
-            <div>
-                <Row fontSize="titleBigger">Project One</Row>
-                <Row>
-                    <DragDropContext
-                        onDragEnd={(result) =>
-                            onDragEnd(result, columns, setColumns)
-                        }
-                    >
-                        {Object.entries(columns).map(
-                            ([columnId, column], index) => {
-                                return (
-                                    <Cards
-                                        titlee={column.name}
-                                        key={columnId}
-                                        style={{ margin: 4 }}
-                                    >
-                                        <div style={{ margin: 8 }}>
-                                            <Droppable
-                                                droppableId={columnId}
-                                                key={columnId}
-                                            >
-                                                {(provided, snapshot) => {
-                                                    return (
-                                                        <div
-                                                            {...provided.droppableProps}
-                                                            ref={
-                                                                provided.innerRef
-                                                            }
-                                                            style={{
-                                                                background:
-                                                                    snapshot.isDraggingOver
-                                                                        ? "#F45555"
-                                                                        : "#FF3422",
-                                                                padding: 4,
-                                                                width: 250,
-                                                                minHeight: 500,
-                                                            }}
-                                                        >
-                                                            {column.items.map(
-                                                                (
-                                                                    item,
-                                                                    index
-                                                                ) => {
-                                                                    return (
-                                                                        <Draggable
-                                                                            key={
-                                                                                item.id
-                                                                            }
-                                                                            draggableId={
-                                                                                item.id
-                                                                            }
-                                                                            index={
-                                                                                index
-                                                                            }
-                                                                        >
-                                                                            {(
-                                                                                provided,
-                                                                                snapshot
-                                                                            ) => {
-                                                                                return (
-                                                                                    <div
-                                                                                        ref={
-                                                                                            provided.innerRef
-                                                                                        }
-                                                                                        {...provided.draggableProps}
-                                                                                        {...provided.dragHandleProps}
-                                                                                        style={{
-                                                                                            userSelect:
-                                                                                                "none",
-                                                                                            padding:
-                                                                                                "4px",
-                                                                                            margin: "0 0 2px 0",
-
-                                                                                            backgroundColor:
-                                                                                                snapshot.isDragging
-                                                                                                    ? "#260"
-                                                                                                    : "#456C86",
-                                                                                            color: "white",
-                                                                                            ...provided
-                                                                                                .draggableProps
-                                                                                                .style,
-                                                                                        }}
-                                                                                    >
-                                                                                        <ListItem
-                                                                                            label={
-                                                                                                item.content
-                                                                                            }
-                                                                                        />
-                                                                                    </div>
-                                                                                );
-                                                                            }}
-                                                                        </Draggable>
-                                                                    );
-                                                                }
-                                                            )}
-                                                            {
-                                                                provided.placeholder
-                                                            }
-                                                        </div>
-                                                    );
-                                                }}
-                                            </Droppable>
-                                        </div>
-                                    </Cards>
-                                );
-                            }
-                        )}
-                    </DragDropContext>
-                </Row>
-            </div>
+            </Row>
         </div>
     );
 };
