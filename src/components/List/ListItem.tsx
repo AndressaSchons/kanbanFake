@@ -2,7 +2,6 @@ import { Column } from "../Column/Columns";
 import { Text } from "../Text";
 
 export type ListItemProps = {
-    id: string;
     label: string;
 };
 

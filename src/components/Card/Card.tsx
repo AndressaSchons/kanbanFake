@@ -1,8 +1,7 @@
 import { Text } from "../Text";
 import { Top } from "../Top/Top";
 import { Box } from "../Box/Box";
-import { Row } from "../Row";
-import { Input } from "../Input/input";
+import { Row } from "../Row/row";
 import { ReactNode } from "react";
 import { ListItem } from "../List/ListItem";
 

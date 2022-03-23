@@ -1,4 +1,4 @@
-import { Row } from "../components/Row";
+import { Row } from "../components/Row/row";
 import { Input } from "../components/Input/input";
 import { Cards } from "../components/Card";
 import { Button } from "../components/Button/Button";
@@ -10,7 +10,6 @@ import {
 } from "react-beautiful-dnd";
 import { useState } from "react";
 import { v4 as uuid, v4 } from "uuid";
-import { List } from "../components/List/List";
 
 type items = {
     title: string;
@@ -43,12 +42,26 @@ const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
     const { source, destination } = result;
 
     if (source.droppableId !== destination.droppableId) {
+
         const sourceColumn = columns[source.droppableId];
+
         const destColumn = columns[destination.droppableId];
+
+
         const sourceItems = [...sourceColumn.items];
+
+
+        console.log("sour", sourceColumn.items);
         const destItems = [...destColumn.items];
+        console.log("dest", destItems)
+
+
         const [removed] = sourceItems.splice(source.index, 1);
+
+
+        console.log([removed])
         destItems.splice(destination.index, 0, removed);
+        console.log(destItems.splice(destination.index, 0, removed))
         setColumns({
             ...columns,
             [source.droppableId]: {
@@ -80,11 +93,8 @@ export const Home = () => {
     const [tasks, setTasks] = useState(initial);
     const [columns, setColumns] = useState(columnsFromBackend);
 
-    const itemExample = [{ id: uuid(), content: tasks }];
-
     const handleButton = () => {
         if (!taskName) return;
-        console.log(taskName);
         const copy = tasks;
         copy.push({ title: taskName, id: v4() });
         setTasks(copy);
@@ -128,10 +138,7 @@ export const Home = () => {
                             return (
                                 <Cards titlee={column.name} key={columnId}>
                                     <div style={{ margin: 8 }}>
-                                        <Droppable
-                                            droppableId={columnId}
-                                            key={columnId}
-                                        >
+                                        <Droppable droppableId={columnId} key={columnId} >
                                             {(provided, snapshot) => {
                                                 return (
                                                     <div
@@ -150,60 +157,42 @@ export const Home = () => {
                                                         {column.items.map(
                                                             (item, index) => {
                                                                 return (
-                                                                    <Draggable
-                                                                        key={
-                                                                            item.id
-                                                                        }
-                                                                        draggableId={
-                                                                            item.id
-                                                                        }
-                                                                        index={
-                                                                            index
-                                                                        }
-                                                                    >
-                                                                        {(
-                                                                            provided,
-                                                                            snapshot
-                                                                        ) => {
-                                                                            return (
-                                                                                <div
-                                                                                    ref={
-                                                                                        provided.innerRef
-                                                                                    }
-                                                                                    {...provided.draggableProps}
-                                                                                    {...provided.dragHandleProps}
-                                                                                    style={{
-                                                                                        userSelect:
-                                                                                            "none",
-                                                                                        padding:
-                                                                                            "4px",
-                                                                                        margin: "0 0 2px 0",
-                                                                                        color: "white",
-                                                                                        ...provided
-                                                                                            .draggableProps
-                                                                                            .style,
-                                                                                    }}
+                                                                    <div key={index} >
+                                                                        {tasks.map(
+                                                                            (item, index) => (
+                                                                                <Draggable
+                                                                                    key={item.id}
+                                                                                    draggableId={item.id}
+                                                                                    index={index}
                                                                                 >
-                                                                                    {tasks.map(
-                                                                                        (
-                                                                                            item,
-                                                                                            index
-                                                                                        ) => (
+                                                                                    {(provided, snapshot) => {
+                                                                                        return (
                                                                                             <div
-                                                                                                key={
-                                                                                                    index
+                                                                                                ref={
+                                                                                                    provided.innerRef
                                                                                                 }
+                                                                                                {...provided.draggableProps}
+                                                                                                {...provided.dragHandleProps}
+                                                                                                style={{
+                                                                                                    userSelect:
+                                                                                                        "none",
+                                                                                                    padding:
+                                                                                                        "4px",
+                                                                                                    margin: "0 0 2px 0",
+                                                                                                    color: "white",
+                                                                                                    ...provided
+                                                                                                        .draggableProps
+                                                                                                        .style,
+                                                                                                }}
                                                                                             >
-                                                                                                {
-                                                                                                    item.title
-                                                                                                }
+                                                                                                {item.title}
                                                                                             </div>
-                                                                                        )
-                                                                                    )}
-                                                                                </div>
-                                                                            );
-                                                                        }}
-                                                                    </Draggable>
+                                                                                        );
+                                                                                    }}
+                                                                                </Draggable>
+                                                                            )
+                                                                        )}
+                                                                    </div>
                                                                 );
                                                             }
                                                         )}
@@ -218,11 +207,6 @@ export const Home = () => {
                         }
                     )}
                 </DragDropContext>
-            </Row>
-            <Row>
-                {tasks.map((item, index) => (
-                    <div key={index}>{item.title}</div>
-                ))}
             </Row>
         </div>
     );
