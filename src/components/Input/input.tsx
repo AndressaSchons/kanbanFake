@@ -28,10 +28,9 @@ type InputProps = FlexProps &
     TextAlignProps;
 
 export const Input = styled.input<InputProps>`
-    background-color: transparent;
     padding: 10px;
     border: 2px #fff;
-    color: #fff;
+    color: #000;
 
     &::placeholder {
         color: rgba(0, 0, 0, 0.2);

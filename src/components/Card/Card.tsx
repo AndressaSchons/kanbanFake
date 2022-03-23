@@ -24,6 +24,8 @@ export const Cards = ({ titlee, children }: propsColumn) => {
                     backgroundColor="#D5FFC1"
                     minHeight="30px"
                     borderBottom="2px solid #000"
+                    display="flex"
+                    justifyContent="center"
                 >
                     <Text
                         color="normalColor"

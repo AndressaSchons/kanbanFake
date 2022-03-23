@@ -6,9 +6,17 @@ import {
     LayoutProps,
     space,
     SpaceProps,
+    ColorStyleProps,
+    ColorProps,
+    color,
+    colorStyle,
 } from "styled-system";
 
-type RowProps = LayoutProps & SpaceProps & FontSizeProps;
+type RowProps = LayoutProps &
+    SpaceProps &
+    FontSizeProps &
+    ColorProps &
+    ColorStyleProps;
 
 export const Row = styled.div<RowProps>`
     display: flex;
@@ -16,4 +24,6 @@ export const Row = styled.div<RowProps>`
     ${layout}
     ${space}
     ${fontSize}
+    ${color}
+    ${colorStyle}
 `;

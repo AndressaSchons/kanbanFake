@@ -1,6 +1,7 @@
-import { Column } from "../components/Column";
 import { Row } from "../components/Row";
+import { Input } from "../components/Input/input";
 import { Cards } from "../components/Card";
+import { Button } from "../components/Button/Button";
 import {
     DragDropContext,
     Droppable,
@@ -8,21 +9,20 @@ import {
     DropResult,
 } from "react-beautiful-dnd";
 import { useState } from "react";
-import { v4 as uuid } from "uuid";
-import { ListItem } from "../components/List/ListItem";
+import { v4 as uuid, v4 } from "uuid";
+import { List } from "../components/List/List";
 
-const itemsFromBackend = [
-    { id: uuid(), content: "First task" },
-    { id: uuid(), content: "Second task" },
-    { id: uuid(), content: "Third task" },
-    { id: uuid(), content: "Fourth task" },
-    { id: uuid(), content: "Fifth task" },
-];
+type items = {
+    title: string;
+    id: string;
+};
+
+const initial: items[] = [];
 
 const columnsFromBackend = {
     [uuid()]: {
         name: "Requested",
-        items: itemsFromBackend,
+        items: initial,
     },
     [uuid()]: {
         name: "To Do",
@@ -38,7 +38,7 @@ const columnsFromBackend = {
     },
 };
 
-const onDragEnd = (result: DropResult, columns, setColumns) => {
+const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
     if (!result.destination) return;
     const { source, destination } = result;
 
@@ -76,11 +76,47 @@ const onDragEnd = (result: DropResult, columns, setColumns) => {
 };
 
 export const Home = () => {
+    const [taskName, setTaskName] = useState("");
+    const [tasks, setTasks] = useState(initial);
     const [columns, setColumns] = useState(columnsFromBackend);
 
+    const itemExample = [{ id: uuid(), content: tasks }];
+
+    const handleButton = () => {
+        if (!taskName) return;
+        console.log(taskName);
+        const copy = tasks;
+        copy.push({ title: taskName, id: v4() });
+        setTasks(copy);
+        setTaskName("");
+        console.log(tasks);
+    };
     return (
         <div>
-            <Row fontSize="titleBigger">Project One</Row>
+            <Row
+                fontSize="titleBigger"
+                color="titleColor"
+                backgroundColor="nameColor"
+            >
+                Project One
+            </Row>
+
+            <Row display="inline-block">
+                <Input
+                    flex={1}
+                    placeholder="What do you have to do?"
+                    value={taskName}
+                    onChange={(e) => setTaskName(e.target.value)}
+                    marginBottom="15px"
+                    marginTop="10px"
+                    marginLeft="20px"
+                    marginRight="20px"
+                />
+                <Button onClick={handleButton} margin="15px">
+                    Add
+                </Button>
+            </Row>
+
             <Row>
                 <DragDropContext
                     onDragEnd={(result) =>
@@ -148,11 +184,22 @@ export const Home = () => {
                                                                                             .style,
                                                                                     }}
                                                                                 >
-                                                                                    <ListItem
-                                                                                        label={
-                                                                                            item.content
-                                                                                        }
-                                                                                    />
+                                                                                    {tasks.map(
+                                                                                        (
+                                                                                            item,
+                                                                                            index
+                                                                                        ) => (
+                                                                                            <div
+                                                                                                key={
+                                                                                                    index
+                                                                                                }
+                                                                                            >
+                                                                                                {
+                                                                                                    item.title
+                                                                                                }
+                                                                                            </div>
+                                                                                        )
+                                                                                    )}
                                                                                 </div>
                                                                             );
                                                                         }}
@@ -171,6 +218,11 @@ export const Home = () => {
                         }
                     )}
                 </DragDropContext>
+            </Row>
+            <Row>
+                {tasks.map((item, index) => (
+                    <div key={index}>{item.title}</div>
+                ))}
             </Row>
         </div>
     );

@@ -10,13 +10,16 @@ import {
     BorderStyleProps,
     BordersProps,
     borders,
+    flexbox,
+    FlexboxProps,
 } from "styled-system";
 
 type TopProps = SpaceProps &
     ColorProps &
     LayoutProps &
     BorderStyleProps &
-    BordersProps;
+    BordersProps &
+    FlexboxProps;
 
 export const Top = styled.div<TopProps>`
     ${space}
@@ -24,4 +27,5 @@ export const Top = styled.div<TopProps>`
     ${layout}
     ${border}
     ${borders}
+    ${flexbox}
 `;
