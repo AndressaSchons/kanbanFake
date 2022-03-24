@@ -2,6 +2,8 @@ import styled from "styled-components";
 import {
     backgroundColor,
     BackgroundColorProps,
+    border,
+    BorderProps,
     color,
     ColorStyleProps,
     flex,
@@ -25,7 +27,7 @@ type InputProps = FlexProps &
     PositionProps &
     FlexboxProps &
     FlexBasisProps &
-    TextAlignProps;
+    TextAlignProps & BorderProps;
 
 export const Input = styled.input<InputProps>`
     padding: 10px;
@@ -41,5 +43,6 @@ export const Input = styled.input<InputProps>`
     ${color}
     ${position}
     ${flexbox}
-    ${textAlign}
+    ${textAlign},
+    ${border}
 `;

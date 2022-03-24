@@ -1,9 +1,9 @@
-import { Text } from "../Text";
+import { Text } from "../Text/Text";
 import { Top } from "../Top/Top";
 import { Box } from "../Box/Box";
 import { Row } from "../Row/row";
 import { ReactNode } from "react";
-import { ListItem } from "../List/ListItem";
+import { Droppable } from "react-beautiful-dnd";
 
 type propsColumn = {
     titlee: string;
@@ -37,7 +37,10 @@ export const Cards = ({ titlee, children }: propsColumn) => {
                         {titlee}
                     </Text>
                 </Top>
+
                 <Row width="100%">{children}</Row>
+
+
             </Box>
         </div>
     );
