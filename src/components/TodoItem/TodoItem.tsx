@@ -6,9 +6,9 @@ type props = {
 
 export const TodoItem = ({ todo, id }: props) => {
     return (
-        <Text>
+        <Text color="#000">
             {todo}
-            {id}
+            
         </Text>
     )
 }

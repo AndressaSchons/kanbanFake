@@ -39,7 +39,12 @@ const columnsFromBackend = {
     },
 };
 
-let arrayColumnOne: Array<items> = []
+const TESTE = {
+    title: "TESTE",
+    id: v4()
+}
+
+let arrayColumnOne: Array<items> = [TESTE]
 let arrayColumnTwo: Array<items> = []
 let arrayColumnTree: Array<items> = []
 let arrayColumnFourth: Array<items> = []
@@ -123,7 +128,6 @@ export const Home = () => {
                     marginBottom="15px"
                     marginTop="10px"
                     marginLeft="20px"
-                    borderBottomColor="red"
                 />
                 <Button onClick={handleButton} margin="15px">
                     Add
@@ -170,12 +174,12 @@ export const Home = () => {
                                                                                     padding:
                                                                                         "4px",
                                                                                     margin: "0 0 2px 0",
-                                                                                    color: "white",
                                                                                     ...provided
                                                                                         .draggableProps
                                                                                         .style,
                                                                                 }}
                                                                             >
+                                                                                {/* passar uma leitura do array para mostrar dinamicamente */}
                                                                                 <TodoItem todo={arrayColumnOne[0].title} id={arrayColumnOne[0].id} />
                                                                             </div>
                                                                         );
@@ -193,7 +197,7 @@ export const Home = () => {
                             )
                         })}
                 </DragDropContext>
-            </Row>
+            </Row> 
         </div >
     );
 };
