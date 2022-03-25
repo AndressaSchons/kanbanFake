@@ -12,6 +12,9 @@ import {
     FlexboxProps,
     LayoutProps,
     layout,
+    BordersProps,
+    borderColor,
+    borderLeft,
 } from "styled-system";
 
 type TextProps = TypographyProps &
@@ -19,7 +22,8 @@ type TextProps = TypographyProps &
     ColorProps &
     FontSizeProps &
     FlexboxProps &
-    LayoutProps;
+    LayoutProps &
+    BordersProps;
 
 export const Text = styled.p<TextProps>`
     color: #fff;
@@ -29,4 +33,6 @@ export const Text = styled.p<TextProps>`
     ${fontSize}
     ${flexbox}
     ${layout}
+    ${borderColor}
+
 `;

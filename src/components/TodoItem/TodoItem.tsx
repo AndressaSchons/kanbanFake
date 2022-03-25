@@ -4,11 +4,19 @@ type props = {
     todo: string;
 }
 
-export const TodoItem = ({ todo, id }: props) => {
+//Style
+
+const TodoItem = ({ todo, id }: props) => {
     return (
-        <Text color="#000">
+        <Text
+            padding="15px"
+            backgroundColor="F3F3F3"
+            borderLeft="2px solid #fff"
+            color="#000">
             {todo}
-            
+
         </Text>
     )
 }
+
+export default TodoItem;
