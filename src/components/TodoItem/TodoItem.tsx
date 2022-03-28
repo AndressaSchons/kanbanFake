@@ -1,18 +1,20 @@
 import { Text } from "../Text/Text"
 type props = {
-    id: string;
+
     todo: string;
 }
 
-//Style
-
-const TodoItem = ({ todo, id }: props) => {
+const TodoItem = ({ todo }: props) => {
     return (
         <Text
-            padding="15px"
-            backgroundColor="F3F3F3"
-            borderLeft="2px solid #fff"
-            color="#000">
+            bg="rgba(0, 0, 0, 0.2)"
+            p="15px"
+            mb="10px"
+            borderRadius="4px"
+            marginRight="15px"
+            marginLeft="15px"
+            borderLeft="5px solid #fff"
+            word-wrap="break-word">
             {todo}
 
         </Text>

@@ -31,8 +31,11 @@ type InputProps = FlexProps &
 
 export const Input = styled.input<InputProps>`
     padding: 10px;
-    border: 2px #fff;
+    border:none;
+    background-color: #F3F3F3;
     color: #000;
+    width: 1227px;
+    
 
     &::placeholder {
         color: rgba(0, 0, 0, 0.2);

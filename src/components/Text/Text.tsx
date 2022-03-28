@@ -15,6 +15,7 @@ import {
     BordersProps,
     borderColor,
     borderLeft,
+    border,
 } from "styled-system";
 
 type TextProps = TypographyProps &
@@ -34,5 +35,6 @@ export const Text = styled.p<TextProps>`
     ${flexbox}
     ${layout}
     ${borderColor}
+    ${border}
 
 `;

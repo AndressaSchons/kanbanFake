@@ -2,7 +2,6 @@ import { Row } from "../components/Row/row";
 import { Input } from "../components/Input/input";
 import { Cards } from "../components/Columns/Column";
 import { Button } from "../components/Button/Button";
-import TodoItem from "../components/TodoItem/TodoItem";
 import {
     DragDropContext,
     Droppable,
@@ -26,50 +25,30 @@ type Column = {
 
 type ColumnList = Column[]
 
-const initial: Item[] = [];
 
-const columnsFromBackend: ColumnList = [
+const columnsBlocked: ColumnList = [
     {
         id: v4(),
         name: "Requested",
-        items: [
-            {
-                id: 'dawdwa',
-                title: 'outrocard1',
-            }
-        ]
+        items: []
     },
     {
         id: v4(),
         name: "To Do",
-        items: [
-            {
-                id: 'dawdwa',
-                title: 'outrocard1',
-            }
-        ]
+        items: []
     },
     {
         id: v4(),
         name: "In Progress",
-        items: [
-            {
-                id: 'dawdwa',
-                title: 'outrocard1',
-            }
-        ]
+        items: []
     },
     {
         id: v4(),
         name: "Done",
-        items: [
-            {
-                id: 'dawdwa',
-                title: 'outrocard1',
-            }
-        ]
-    },
+        items: []
+    }
 ]
+
 
 const onDragEnd = (result: DropResult, column: any, setColumns: any) => {
     if (!result.destination) return;
@@ -78,23 +57,21 @@ const onDragEnd = (result: DropResult, column: any, setColumns: any) => {
     const sourceColumn = column[source.droppableId];
     const destColumn = column[destination.droppableId];
 
-
+    const [removed] = sourceColumn.items.splice(source.index, 1);
+    destColumn.items.splice(destination.index, 0, removed);
 }
 
-
 export const Home = () => {
-    const [tasks, setTasks] = useState(initial);
-    const [columns, setColumns] = useState(columnsFromBackend);
+    const [columns, setColumns] = useState(columnsBlocked);
     const [taskName, setTaskName] = useState("");
 
-    // const handleButton = () => {
-    //     if (!taskName) return;
-    //     const copy = [...];
-    //     copy.push({ title: taskName, id: v4() });
-    //     setTasks(copy);
-    //     console.log(copy)
-    //     setTaskName("");
-    // };
+    const handleButton = () => {
+        if (!taskName) return;
+        columnsBlocked[0].items.push({ id: v4(), title: taskName });
+        setColumns(columnsBlocked)
+        console.log(columnsBlocked[0])
+        setTaskName("");
+    };
 
     return (
         <div>
@@ -102,23 +79,24 @@ export const Home = () => {
                 fontSize="titleBigger"
                 color="titleColor"
                 backgroundColor="nameColor"
+                p="15px"
             >
                 Project One
             </Row>
 
             <Row display="inline-block">
                 <Input
-                    flex={1}
+                    width="100px"
                     placeholder="What do you have to do?"
                     value={taskName}
                     onChange={(e) => setTaskName(e.target.value)}
                     marginBottom="15px"
                     marginTop="10px"
-                    marginLeft="20px"
+                    marginLeft="35px"
                 />
-                {/* <Button onClick={handleButton} margin="15px">
+                <Button onClick={handleButton} margin="15px">
                     Add
-                </Button> */}
+                </Button>
             </Row>
 
             <Row>
@@ -130,47 +108,20 @@ export const Home = () => {
                     {Object.entries(columns).map(
                         ([columnId, column], index) => {
                             return (
-                                <Cards titlee={column.name} key={columnId}>
-                                    <div style={{ margin: 8 }}>
+                                <Droppable droppableId={columnId} key={columnId} >
+                                    {(provided, snapshot) => {
+                                        return (
+                                            <div ref={provided.innerRef} key={index} {...provided.droppableProps}>
+                                                <Cards titlee={column.name} key={columnId} label={column.items} />
+                                                {provided.placeholder}
+                                            </div>
 
-                                        {/* <Droppable droppableId={columnId} key={columnId} >
-                                            {(provided, snapshot) => {
-                                                return (
-                                                    <div {...provided.droppableProps} ref={provided.innerRef} key={index} >
+                                        )
 
-                                                        
-                                                        <Draggable
-                                                            key={item.id}
-                                                            draggableId={item.id}
-                                                            index={index}
-                                                        >
+                                    }}
 
-                                                            {(provided, snapshot) => (
+                                </Droppable>
 
-                                                                <div
-                                                                    ref={
-                                                                        provided.innerRef
-                                                                    }
-                                                                    {...provided.draggableProps}
-                                                                    {...provided.dragHandleProps}
-
-                                                                >
-                                                                    
-                                                                    <TodoItem todo={arrayColumnOne[0].title} id={arrayColumnOne[0].id} />
-                                                                </div>
-                                                            )
-                                                            }
-                                                        </Draggable>
-
-
-                                                        ))
-                                                        {provided.placeholder}
-                                                    </div>
-                                                )
-                                            }}
-                                        </Droppable> */}
-                                    </div>
-                                </Cards>
                             )
                         })}
                 </DragDropContext>

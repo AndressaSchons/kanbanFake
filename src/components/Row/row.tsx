@@ -21,6 +21,9 @@ type RowProps = LayoutProps &
 export const Row = styled.div<RowProps>`
     display: flex;
     flex-direction: row;
+    overflow: hidden;
+    word-break: break-all;
+
     ${layout}
     ${space}
     ${fontSize}
